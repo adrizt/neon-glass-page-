@@ -1,122 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Love Interface</title>
+  <title>Love Interface Test</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- OG PREVIEW (AMAN / NO REDIRECT) -->
-  <meta property="og:title" content="Love Interface • Tap To Enter">
-  <meta property="og:description" content="Soft neon love experience ✨">
+  <!-- OG SAFE (NO REDIRECT / NO TRACKING) -->
+  <meta property="og:title" content="Love Interface • Test Mode">
+  <meta property="og:description" content="Testing FB crawler compatibility">
   <meta property="og:image" content="https://i.imgur.com/HsSCtQ0.jpeg">
   <meta property="og:type" content="website">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
     body {
+      margin: 0;
       height: 100vh;
-      overflow: hidden;
-      background: #0a0614;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #0b0616;
       color: white;
-    }
-
-    .bg {
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background:
-        radial-gradient(circle at 20% 30%, #ff4fd833, transparent 40%),
-        radial-gradient(circle at 80% 70%, #7a5cff33, transparent 45%),
-        radial-gradient(circle at 50% 50%, #ff7ac633, transparent 50%);
-      filter: blur(70px);
-      animation: move 10s infinite alternate;
-      z-index: 0;
-    }
-
-    @keyframes move {
-      0% { transform: translate(-5%, -5%); }
-      100% { transform: translate(5%, 5%); }
+      font-family: Arial;
     }
 
     .card {
-      width: 320px;
-      padding: 28px;
-      border-radius: 18px;
+      width: 300px;
+      padding: 25px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255, 105, 180, 0.25);
-      backdrop-filter: blur(16px);
       text-align: center;
-      z-index: 2;
+      border: 1px solid rgba(255,105,180,0.3);
     }
 
-    .logo {
+    .img {
       width: 70px;
       height: 70px;
       margin: 0 auto 15px;
-      border-radius: 16px;
+      border-radius: 14px;
       background: url('https://i.imgur.com/HsSCtQ0.jpeg') center/cover;
-      box-shadow: 0 0 25px #ff4fd866;
     }
 
     h1 {
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 6px;
     }
 
     p {
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.7;
-      margin-bottom: 18px;
     }
 
     button {
+      margin-top: 15px;
       width: 100%;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid #ff4fd855;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #ff4fd8;
       background: transparent;
       color: #ff7ac6;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: rgba(255,79,216,0.12);
     }
   </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+  <div class="card">
+    <div class="img"></div>
+    <h1>FB Debug Test</h1>
+    <p>If this works, server is OK ✔</p>
 
-<div class="card">
-  <div class="logo"></div>
-
-  <h1>Love Interface</h1>
-  <p>Soft neon visual experience</p>
-
-  <!-- LINK AMAN (TIDAK DIPAKSA REDIRECT SAAT LOAD FB BOT) -->
-  <button onclick="enter()">Enter Experience</button>
-</div>
-
-<script>
-  // GANTI LINK DI SINI
-  const link = "https://dffjhfg.lnkks.com/p/oRqSU";
-
-  function enter() {
-    window.location.href = link;
-  }
-</script>
+    <!-- TEST BUTTON (NO EXTERNAL LINK) -->
+    <button onclick="alert('Test OK')">Click Test</button>
+  </div>
 
 </body>
 </html>
