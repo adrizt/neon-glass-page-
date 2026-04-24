@@ -5,10 +5,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- OG PREVIEW -->
+  <!-- OG PREVIEW (AMAN / NO REDIRECT) -->
   <meta property="og:title" content="Love Interface • Tap To Enter">
-  <meta property="og:description" content="A soft neon love experience ✨">
+  <meta property="og:description" content="Soft neon love experience ✨">
   <meta property="og:image" content="https://i.imgur.com/HsSCtQ0.jpeg">
+  <meta property="og:type" content="website">
 
   <style>
     * {
@@ -28,7 +29,6 @@
       color: white;
     }
 
-    /* BACKGROUND GLOW */
     .bg {
       position: fixed;
       width: 200%;
@@ -47,15 +47,6 @@
       100% { transform: translate(5%, 5%); }
     }
 
-    #heartCanvas {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* CARD */
     .card {
       width: 320px;
       padding: 28px;
@@ -87,28 +78,6 @@
       margin-bottom: 18px;
     }
 
-    .status {
-      font-size: 12px;
-      color: #ff7ac6;
-      margin-bottom: 12px;
-    }
-
-    .bar {
-      width: 100%;
-      height: 6px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
-
-    .fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ff4fd8, #7a5cff);
-      transition: width 0.2s;
-    }
-
     button {
       width: 100%;
       padding: 12px;
@@ -129,7 +98,6 @@
 <body>
 
 <div class="bg"></div>
-<canvas id="heartCanvas"></canvas>
 
 <div class="card">
   <div class="logo"></div>
@@ -137,96 +105,17 @@
   <h1>Love Interface</h1>
   <p>Soft neon visual experience</p>
 
-  <div class="status" id="status">Loading...</div>
-
-  <div class="bar">
-    <div class="fill" id="fill"></div>
-  </div>
-
-  <button onclick="go()">Enter Experience</button>
+  <!-- LINK AMAN (TIDAK DIPAKSA REDIRECT SAAT LOAD FB BOT) -->
+  <button onclick="enter()">Enter Experience</button>
 </div>
 
 <script>
+  // GANTI LINK DI SINI
   const link = "https://dffjhfg.lnkks.com/p/oRqSU";
 
-  function go() {
+  function enter() {
     window.location.href = link;
   }
-
-  // loading bar
-  let progress = 0;
-  const fill = document.getElementById("fill");
-
-  setInterval(() => {
-    if (progress < 100) {
-      progress += Math.random() * 8;
-      if (progress > 100) progress = 100;
-      fill.style.width = progress + "%";
-    }
-  }, 120);
-
-  const texts = ["Loading love...", "Preparing interface...", "Ready ✨"];
-  let i = 0;
-
-  setInterval(() => {
-    document.getElementById("status").innerText = texts[i];
-    i = (i + 1) % texts.length;
-  }, 900);
-
-  // hearts
-  const canvas = document.getElementById("heartCanvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-
-  window.addEventListener("resize", () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-  });
-
-  const hearts = [];
-
-  function create() {
-    return {
-      x: Math.random() * canvas.width,
-      y: canvas.height + 10,
-      size: Math.random() * 8 + 5,
-      speed: Math.random() * 1.5 + 0.5,
-      drift: Math.random() - 0.5
-    };
-  }
-
-  setInterval(() => {
-    if (hearts.length < 30) hearts.push(create());
-  }, 150);
-
-  function draw(x, y, s) {
-    ctx.fillStyle = "#ff4fd8";
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.bezierCurveTo(x, y - s, x - s, y - s, x - s, y);
-    ctx.bezierCurveTo(x - s, y + s, x, y + s, x, y + s*1.2);
-    ctx.bezierCurveTo(x, y + s, x + s, y + s, x + s, y);
-    ctx.bezierCurveTo(x + s, y - s, x, y - s, x, y);
-    ctx.fill();
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    hearts.forEach((h, idx) => {
-      h.y -= h.speed;
-      h.x += h.drift;
-      draw(h.x, h.y, h.size);
-
-      if (h.y < -20) hearts[idx] = create();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
 </script>
 
 </body>
